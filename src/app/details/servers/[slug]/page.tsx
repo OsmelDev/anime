@@ -4,13 +4,15 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 const page = async ({ params }: PageProps) => {
-  const { slug } = await params;
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
+
   const { getEpisodesBySlug } = services();
 
   const { data } = await getEpisodesBySlug(slug);

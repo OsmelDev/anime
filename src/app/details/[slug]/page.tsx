@@ -4,13 +4,15 @@ import { Box, CardMedia, Grid, Typography } from "@mui/material";
 import React from "react";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default async function page({ params }: PageProps) {
-  const { slug } = await params;
+export default async function DetailsPage({ params }: PageProps) {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
+
   const { getSearchBySlug } = services();
 
   const { data } = await getSearchBySlug(slug);
