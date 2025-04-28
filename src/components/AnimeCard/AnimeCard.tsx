@@ -11,6 +11,7 @@ import {
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import React from "react";
+import Link from "next/link";
 
 interface AnimeCardProps {
   anime: {
@@ -26,7 +27,7 @@ interface AnimeCardProps {
 
 const AnimeCard = ({ anime }: AnimeCardProps) => {
   return (
-    <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+    <Grid size={{ xs: 12, sm: 6, md: 4 }} sx={{ border: "1px solid red" }}>
       <Card
         sx={{
           height: "100%",
@@ -78,7 +79,7 @@ const AnimeCard = ({ anime }: AnimeCardProps) => {
             <ShareIcon />
           </IconButton>
           <Button size="small" color="primary" sx={{ ml: "auto" }}>
-            Ver más
+            <Link href={`details/${anime.slug}`}>Ver más</Link>
           </Button>
         </CardActions>
       </Card>
