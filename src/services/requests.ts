@@ -1,12 +1,18 @@
 import { api } from "@/axiosIntance/axios.intace";
+import { isAxiosError } from "@/utils/error";
+import { toast } from "react-toastify";
 
 export const services = () => {
   const getList = async () => {
     try {
       const { data } = await api.post("/search/by-filter?order=default");
       return data;
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      const { isError, message } = isAxiosError(error);
+
+      if (isError) {
+        toast.error(message);
+      }
     }
   };
 
@@ -15,7 +21,11 @@ export const services = () => {
       const { data } = await api.get(`/anime/${slug}`);
       return data;
     } catch (error) {
-      console.log(error);
+      const { isError, message } = isAxiosError(error);
+
+      if (isError) {
+        toast.error(message);
+      }
     }
   };
 
@@ -24,7 +34,11 @@ export const services = () => {
       const { data } = await api.get(`/anime/episode/${slug}`);
       return data;
     } catch (error) {
-      console.log(error);
+      const { isError, message } = isAxiosError(error);
+
+      if (isError) {
+        toast.error(message);
+      }
     }
   };
 

@@ -56,44 +56,48 @@ export const TabsPanel = ({ servers, episodes }: TabsProps) => {
 
   return (
     <Box>
-      {servers && (
-        <Tabs value={value} onChange={handleChange} aria-label="episodes tab">
-          {servers.map((server, i) => (
-            <Tab key={i} label={server.name} {...a11yProps(0)} />
+      <>
+        {servers && (
+          <Tabs value={value} onChange={handleChange} aria-label="episodes tab">
+            {servers.map((server, i) => (
+              <Tab key={i} label={server.name} {...a11yProps(0)} />
+            ))}
+          </Tabs>
+        )}
+        {episodes && (
+          <Tabs value={value} onChange={handleChange} aria-label="episodes tab">
+            <Tab label="Capitulos" {...a11yProps(0)} />
+          </Tabs>
+        )}
+      </>
+      <>
+        {servers &&
+          servers.map((server, index) => (
+            <CustomTabPanel key={index} value={value} index={index}>
+              <CardMedia
+                component="iframe"
+                src={server.embed}
+                allow="autoplay"
+                height="450rem"
+                style={{ border: "none" }}
+              />
+            </CustomTabPanel>
           ))}
-        </Tabs>
-      )}
-      {episodes && (
-        <Tabs value={value} onChange={handleChange} aria-label="episodes tab">
-          <Tab label="Capitulos" {...a11yProps(0)} />
-        </Tabs>
-      )}
-      {servers &&
-        servers.map((server, index) => (
-          <CustomTabPanel key={index} value={value} index={index}>
-            <CardMedia
-              component="iframe"
-              src={server.embed}
-              allow="autoplay"
-              height="450rem"
-              style={{ border: "none" }}
-            />
+        {episodes && (
+          <CustomTabPanel value={value} index={0}>
+            {episodes.map((episode) => (
+              <Box key={episode.number}>
+                <Link href={`servers/${episode.slug}`}>
+                  <Typography>Capitulo:{episode.number}</Typography>
+                  <Typography component="p" fontSize="18px">
+                    {episode.slug}
+                  </Typography>
+                </Link>
+              </Box>
+            ))}
           </CustomTabPanel>
-        ))}
-      {episodes && (
-        <CustomTabPanel value={value} index={0}>
-          {episodes.map((episode) => (
-            <Box key={episode.number}>
-              <Link href={`servers/${episode.slug}`}>
-                <Typography>Capitulo:{episode.number}</Typography>
-                <Typography component="p" fontSize="18px">
-                  {episode.slug}
-                </Typography>
-              </Link>
-            </Box>
-          ))}
-        </CustomTabPanel>
-      )}
+        )}
+      </>
     </Box>
   );
 };
