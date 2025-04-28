@@ -1,6 +1,6 @@
 import Capitulos from "@/components/Capitulos/Capitulos";
 import { services } from "@/services/requests";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, CardMedia, Grid, Typography } from "@mui/material";
 import React from "react";
 
 interface PageProps {
@@ -21,16 +21,13 @@ export default async function page({ params }: PageProps) {
       spacing={{ xs: 0, sm: 2 }}
       sx={{ padding: { sm: 5, xs: 2 } }}
     >
-      <Grid
-        size={{ xs: 24, sm: 8 }}
-        sx={{ border: "1px solid ", height: { xs: 400 } }}
-      >
-        <img
-          src={`${data.cover}?w=248&fit=crop&auto=format`}
-          alt={data.title}
-          loading="lazy"
-          width="100%"
-          height="100%"
+      <Grid size={{ xs: 24, sm: 8 }} sx={{ height: { xs: 400 } }}>
+        <CardMedia
+          image={`${data.cover}?w=248&fit=crop&auto=format`}
+          title={data.title}
+          component="img"
+          height={340}
+          sx={{ border: "1px solid #1f1f20", borderRadius: "10px" }}
         />
       </Grid>
 

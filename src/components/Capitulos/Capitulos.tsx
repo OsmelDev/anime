@@ -1,6 +1,5 @@
 "use client";
-import { Box, Link, Tab, Tabs, Typography } from "@mui/material";
-import React, { SyntheticEvent, useState } from "react";
+import { Box } from "@mui/material";
 import { TabsPanel } from "../Tabs/Tabs";
 
 interface CapitulosProps {
