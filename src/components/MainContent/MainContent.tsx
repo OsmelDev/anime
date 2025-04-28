@@ -1,12 +1,13 @@
 import { Container, Grid, Typography } from "@mui/material";
-import { animesPopulates } from "@/data/populateAnime";
 import AnimeCard from "../AnimeCard/AnimeCard";
 import { services } from "@/services/requests";
+import { AnimeRatingResponse, data } from "@/types/anime.types";
 
-const MainContent = () => {
-  const animeSeries = animesPopulates.data.media;
+const MainContent = async () => {
   const { getList } = services();
-  getList();
+  const { data }: data = await getList();
+
+  const animeSeries = data!.media;
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
@@ -20,7 +21,7 @@ const MainContent = () => {
       </Typography>
 
       <Grid container spacing={4}>
-        {animeSeries.map((anime) => (
+        {animeSeries.map((anime: AnimeRatingResponse) => (
           <AnimeCard anime={anime} key={anime.title} />
         ))}
       </Grid>
