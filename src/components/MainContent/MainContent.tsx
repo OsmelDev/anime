@@ -1,13 +1,28 @@
+"use client";
 import { Container, Grid, Typography } from "@mui/material";
 import AnimeCard from "../AnimeCard/AnimeCard";
 import { services } from "@/services/requests";
 import { AnimeRatingResponse, data } from "@/types/anime.types";
+import { useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
-const MainContent = async () => {
+const MainContent = () => {
   const { getList } = services();
-  const { data }: data = await getList();
+  const [series, setSeries] = useState<AnimeRatingResponse[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const animeSeries = data!.media;
+  useEffect(() => {
+    setLoading(true);
+    const fetching = async () => {
+      const { data } = await getList();
+      if (!data) {
+        setLoading(true);
+      }
+      setSeries(data.media);
+      setLoading(false);
+    };
+    fetching();
+  }, []);
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
@@ -20,10 +35,24 @@ const MainContent = async () => {
         Series Populares
       </Typography>
 
-      <Grid container spacing={4}>
-        {animeSeries.map((anime: AnimeRatingResponse) => (
-          <AnimeCard anime={anime} key={anime.title} />
-        ))}
+      <Grid container spacing={4} columns={12}>
+        {loading ? (
+          <Grid
+            size={12}
+            sx={{
+              height: "300px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <CircularProgress size={60} />
+          </Grid>
+        ) : (
+          series!.map((anime: AnimeRatingResponse) => (
+            <AnimeCard anime={anime} key={anime.title} />
+          ))
+        )}
       </Grid>
     </Container>
   );
