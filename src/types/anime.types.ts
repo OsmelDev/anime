@@ -21,3 +21,13 @@ export interface AnimeRatingResponse {
   type: string;
   url: string;
 }
+
+export interface DataFiltered {
+  title: string;
+  cover: string;
+  synopsis: string;
+  rating: string;
+  slug: string;
+  type: string;
+  url: string;
+}
