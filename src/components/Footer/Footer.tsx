@@ -6,7 +6,7 @@ const Footer = () => {
     <Box sx={{ bgcolor: "background.paper", py: 3 }}>
       <Container maxWidth="lg" sx={{ color: "text.primary" }}>
         <Grid container spacing={4}>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }} border="1px solid">
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography variant="h6" gutterBottom>
               AnimeFlix
             </Typography>
@@ -14,7 +14,7 @@ const Footer = () => {
               El mejor sitio para ver anime en línea con subtítulos en español.
             </Typography>
           </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }} border="1px solid">
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography variant="h6" gutterBottom>
               Enlaces
             </Typography>
@@ -29,7 +29,7 @@ const Footer = () => {
               </Box>
             </Typography>
           </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }} border="1px solid">
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography variant="h6" gutterBottom>
               Legal
             </Typography>
@@ -41,7 +41,7 @@ const Footer = () => {
               </Box>
             </Typography>
           </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }} border="1px solid">
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography variant="h6" gutterBottom>
               Contacto
             </Typography>
