@@ -27,7 +27,7 @@ interface AnimeCardProps {
 
 const AnimeCard = ({ anime }: AnimeCardProps) => {
   return (
-    <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+    <Grid size={{ xs: 12, sm: 6, md: 4 }} className="fade-in">
       <Card
         sx={{
           height: "100%",
