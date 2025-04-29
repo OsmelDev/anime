@@ -1,6 +1,7 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
+import Link from "next/link";
 
 const AppBarNavigation = () => {
   return (
@@ -16,9 +17,11 @@ const AppBarNavigation = () => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          AnimeFlix
+          <Link href="/">AnimeFlix</Link>
         </Typography>
-        <Button color="inherit">Login</Button>
+        <Typography variant="h6" component="div">
+          <Link href="/catalog">Catalogo</Link>
+        </Typography>
       </Toolbar>
     </AppBar>
   );
